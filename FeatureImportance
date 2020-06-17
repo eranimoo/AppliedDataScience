@@ -1,0 +1,17 @@
+"""Using X_train2 and y_train2 from the preceeding cell, train a DecisionTreeClassifier with default parameters and random_state=0. What are the 5 most important features found by the decision tree?
+
+As a reminder, the feature names are available in the X_train2.columns property, and the order of the features in X_train2.columns matches the order of the feature importance values in the classifier's feature_importances_ property.
+
+This function should return a list of length 5 containing the feature names in descending order of importance."""
+
+
+def answer_five():
+    from sklearn.tree import DecisionTreeClassifier
+
+    model=DecisionTreeClassifier().fit(X_train2, y_train2)
+    fi= model.feature_importances_
+    fi=pd.Series(fi)
+    fi.index=X_train2.columns
+
+    return fi.sort_values().nlargest(5)
+answer_five()
